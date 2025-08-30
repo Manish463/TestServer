@@ -6,7 +6,7 @@ const app = express()
 app.use(express.json()) // this is an important line to do a post request
 
 // Initializing Environement variable
-const port = process.env.PORT || 3000
+// const port = process.env.PORT || 3000
 const uri = process.env.URI
 
 // Connecting backend with database
