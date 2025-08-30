@@ -30,7 +30,7 @@ app.post('/', async (req, res) => {
     console.log("New object:", data)
     try {
         // const newDoc = await TestModel.create(data)
-        // await db.collection('tests').insertOne(data)
+        await db.collection('tests').insertOne(data)
         res.json({ message: "Inserted successfully", newDoc })
     } catch (error) {
         console.error("Insert error:", error)
