@@ -16,27 +16,29 @@ mongoose.connect(uri).then(() => {
     console.error("Failed to connect:", err)
 })
 
+const TestSchema = new mongoose.Schema({}, { strict: false })
+const TestModel = mongoose.models.Test || mongoose.model("Test", TestSchema)
+
 const db = mongoose.connection
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello World3!</h1>')
+    res.send('<h1>Hello World4!</h1>')
 })
 
 app.post('/', async (req, res) => {
-    let data = req.body
+    const data = req.body
     console.log("New object:", data)
     try {
-        await db.collection('test').insertOne(data) // Inserting data to the db
-        console.log("The data is inserted to the database")
-        res.send({message: "Response from root", data})
+        const newDoc = await TestModel.create(data)
+        res.json({ message: "Inserted successfully", newDoc })
     } catch (error) {
-        console.error("The error is blocking to insert the data in db", error)
-        res.json({message: "A error occure", error})
+        console.error("Insert error:", error)
+        res.status(500).json({ message: "Error inserting data", error })
     }
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+// app.listen(port, () => {
+//     console.log(port)
+// })
 
 export default app
