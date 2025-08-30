@@ -31,24 +31,7 @@ app.post('/', async (req, res) => {
         res.send({message: "Response from root", data})
     } catch (error) {
         console.error("The error is blocking to insert the data in db", error)
-        res.json({message: "Response from root", error})
-    }
-})
-
-app.get('/new', (req, res) => {
-    res.send('<h1>New Page</h1>')
-})
-
-app.post('/new', async (req, res) => {
-    let data = req.body
-    console.log("New object:", data)
-    try {
-        await db.collection('test').insertOne(data) // Inserting data to the db
-        console.log("The data is inserted to the database")
-        res.send({message: "Response from new", data})
-    } catch (error) {
-        console.error("The error is blocking to insert the data in db", error)
-        res.json({message: "Response from new", error})
+        res.json({message: "A error occure", error})
     }
 })
 
