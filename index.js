@@ -19,7 +19,7 @@ mongoose.connect(uri).then(() => {
 const db = mongoose.connection
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello World2!</h1>')
+    res.send('<h1>Hello World3!</h1>')
 })
 
 app.post('/', async (req, res) => {
