@@ -25,7 +25,12 @@ app.get('/', (req, res) => {
 app.post('/', async (req, res) => {
     let data = req.body
     console.log("New object:", data)
-    await db.collection('test').insertOne(data) // Inserting data to the db
+    try {
+        await db.collection('test').insertOne(data) // Inserting data to the db
+        console.log("The data is inserted to the database")
+    } catch (error) {
+        console.error("The error is blocking to insert the data in db", error)
+    }
     res.send({message: "Response from root", data})
 })
 
@@ -36,7 +41,13 @@ app.get('/new', (req, res) => {
 app.post('/new', async (req, res) => {
     let data = req.body
     console.log("New object:", data)
-    await db.collection('test').insertOne(data) // Inserting data to the db
+    try {
+        await db.collection('test').insertOne(data) // Inserting data to the db
+        console.log("The data is inserted to the database")
+    } catch (error) {
+        console.error("The error is blocking to insert the data in db", error)
+    }
+    
     res.send({message: "Response from new", data})
 })
 
