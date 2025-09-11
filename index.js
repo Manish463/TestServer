@@ -39,6 +39,19 @@ app.post('/', async (req, res) => {
     }
 })
 
+app.post('/newpage', async (req, res) => {
+    const data = req.body
+    console.log("New object:", data)
+    try {
+        const newDoc = await TestModel.create(data)
+        // await db.collection('tests').insertOne(data)
+        res.json({ message: "Inserted successfully", newDoc })
+    } catch (error) {
+        console.error("Insert error:", error)
+        res.status(500).json({ message: "Error inserting data", error })
+    }
+})
+
 app.listen(port, () => {
     console.log(port)
 })
