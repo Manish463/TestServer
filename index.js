@@ -11,7 +11,7 @@ const uri = process.env.URI
 
 // Connecting backend with database //
 mongoose.connect(uri).then(() => {
-    console.log("Connection Succesful")
+    console.log("Connected to database")
 }).catch((err) => {
     console.error("Failed to connect:", err)
 })
@@ -21,7 +21,7 @@ const TestSchema = new mongoose.Schema({}, { strict: false })
 const TestModel = mongoose.models.Test || mongoose.model("Test", TestSchema)
 
 app.get('/', (req, res) => {
-    res.send('<h1>Fixing the server again!</h1>')
+    res.send('<h1>Test Server</h1>')
 })
 
 app.post('/', async (req, res) => {
