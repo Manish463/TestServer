@@ -20,8 +20,6 @@ mongoose.connect(uri).then(() => {
 const TestSchema = new mongoose.Schema({}, { strict: false })
 const TestModel = mongoose.models.Test || mongoose.model("Test", TestSchema)
 
-// const db = mongoose.connection
-
 app.get('/', (req, res) => {
     res.send('<h1>Fixing the server again!</h1>')
 })
@@ -31,7 +29,6 @@ app.post('/', async (req, res) => {
     console.log("New object:", data)
     try {
         const newDoc = await TestModel.create(data)
-        // await db.collection('tests').insertOne(data)
         res.json({ message: "Inserted successfully", newDoc })
     } catch (error) {
         console.error("Insert error:", error)
@@ -44,7 +41,6 @@ app.post('/newpage', async (req, res) => {
     console.log("New object:", data)
     try {
         const newDoc = await TestModel.create(data)
-        // await db.collection('tests').insertOne(data)
         res.json({ message: "Inserted successfully", newDoc })
     } catch (error) {
         console.error("Insert error:", error)
@@ -52,6 +48,7 @@ app.post('/newpage', async (req, res) => {
     }
 })
 
+// We don't need this for vercel deployment //
 // app.listen(port, () => {
 //     console.log(port)
 // })
