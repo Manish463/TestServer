@@ -20,10 +20,10 @@ mongoose.connect(uri).then(() => {
 const TestSchema = new mongoose.Schema({}, { strict: false })
 const TestModel = mongoose.models.Test || mongoose.model("Test", TestSchema)
 
-const db = mongoose.connection
+// const db = mongoose.connection
 
 app.get('/', (req, res) => {
-    res.send('<h1>Hello World8!</h1>')
+    res.send('<h1>Fixing the server again!</h1>')
 })
 
 app.post('/', async (req, res) => {
